@@ -1,0 +1,14 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  deploy:
+    runs-on:  dirigera-deploy
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and deploy
+      run: docker compose down && docker system prune -f && docker compose up -d
