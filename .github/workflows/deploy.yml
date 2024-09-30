@@ -7,10 +7,14 @@ on:
     branches: [ "main" ]
 jobs:
   deploy:
+    environment: master
     runs-on:  dirigera-deploy
     steps:
     - uses: actions/checkout@v3
     - name: Set environment variables
+      env: 
+        DIRIGERA_TOKEN: ${{ secrets.DIRIGERA_TOKEN }}
+        DIRIGERA_IP: ${{ secrets.DIRIGERA_IP }}
       run: envsubst < .env.sample > .env
     - name: Build and deploy
       run: docker compose down && docker system prune -f && docker compose up -d
