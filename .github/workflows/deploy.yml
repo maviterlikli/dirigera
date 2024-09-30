@@ -10,5 +10,7 @@ jobs:
     runs-on:  dirigera-deploy
     steps:
     - uses: actions/checkout@v3
+    - name: Set environment variables
+      run: envsubst < .env.sample > .env
     - name: Build and deploy
       run: docker compose down && docker system prune -f && docker compose up -d
