@@ -1,0 +1,13 @@
+services:
+  frontend:
+    image: dirigera
+    build:
+      context: ./dirigera
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DIRIGERA_TOKEN=${DIRIGERA_TOKEN}
+      - DIRIGERA_IP=${DIRIGERA_IP}
+    volumes:
+      - /home/ubuntu/dirigera/dirigera/log.txt:/app/log.txt
+      - /home/ubuntu/dirigera/dirigera/error.txt:/app/error.txt
