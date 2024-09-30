@@ -17,4 +17,4 @@ jobs:
         DIRIGERA_IP: ${{ secrets.DIRIGERA_IP }}
       run: envsubst < .env.sample > .env
     - name: Build and deploy
-      run: docker compose down && docker image rm dirigera -f && docker compose up -d
+      run: docker compose down && docker image prune -f && docker compose up -d
