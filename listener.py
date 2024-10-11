@@ -12,12 +12,14 @@ dirigera_hub = dirigera.Hub(
 def on_message(ws: Any, message: str):
     message_dict = json.loads(message)
     data = message_dict["data"]
+    data = json.dumps(data)
     print(data)
     with open("log.txt", "a") as myfile:
         myfile.write(str(data))
         myfile.write("\n")
 
 def on_error(ws: Any, message: str):
+    message = json.dumps(message)
     print(message)
     with open("error.txt", "a") as myfile:
         myfile.write(str(message))
